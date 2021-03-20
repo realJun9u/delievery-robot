@@ -16,8 +16,14 @@ Line Trace, OCR
 - 하드웨어 가속
 ```
 
-### 개인적 구상
-1.
+### 참고
+휠 - https://m.blog.naver.com/PostView.nhn?blogId=hdh7485&logNo=20118847355&proxyReferer=https:%2F%2Fwww.google.com%2F => 옴니휠 4개 쓰자  
+모터 - https://www.mfgkr.com/archives/5108 => DC 모터 쓰자  
+모터 드라이버 역할? - http://www.makeshare.org/bbs/board.php?bo_table=Parts&wr_id=26  
+라즈베리파이 모터제어 - https://digital-play.tistory.com/24?category=940925  
+라즈베리파이 모터제어 단점 - http://www.makeshare.org/bbs/board.php?bo_table=raspberrypi&wr_id=69 =>  
+아두이노 라즈베리파이 연동 - https://blog.naver.com/PostView.nhn?blogId=3demp&logNo=221399859161&parentCategoryNo=&categoryNo=52&viewDate=&isShowPopularPosts=true&from=search  
+
 
 ### 시간별 진행 상황
 2021-03-08 First team meeting  
@@ -32,4 +38,10 @@ Line Trace, OCR
 > 화면 정보를 통해 위치 정보를 알고 그에 맞는 이동을 설정한다.  
 
 - 이동할 경로는 고정되어 있고 물류를 왔다갔다 하게되니 회전할 필요가 없는 옴니휠을 이용해보는 건?
-> 회전없이 전 방향 이동이 가능하여 사용하면 좋을 것 같다.
+> 회전없이 전 방향 이동이 가능하여 사용하면 좋을 것 같다.  
+
+2021-03-17 팀 미팅 작품 동작, 견적 구상  
+- 적외선 센서를 통한 라인트레이서 + 카메라를 이용한 위치 인식 후 이동
+> 모터를 구동할 때 4개의 모터 필요
+
+PCB : Printed Circuit Board, 인쇄 회로 기판
