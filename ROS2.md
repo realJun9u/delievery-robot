@@ -304,7 +304,7 @@ junq@DESKTOP-964Q3V3:~/Desktop$ ros2 param list /turtlesim
   use_sim_time
 ```
 #### ROS 도구
-1. CLI tools  
+##### CLI tools  
 개발환경 및 빌드, 테스트 툴 colcon / 데이터 기록, 재생, 관리 툴 ros2bag 외 20가지  
 action, bag, component, daemon, doctor, extension_points, extensions, interface, launch, lifecycle, multicast, node, param, pkg, run, security, service, topic, wtf  
 사용법 : ros2 [verbs] [sub-verbs] [options] [arguments]  
@@ -373,13 +373,73 @@ info 저장된 rosbag 정보 출력
 play rosbag 재생
 record	rosbag 기록
 ```
+ros2 extensions
+```
+(-a),(-v) ros2cli의 extension 목록 출력
+```
+ros2 extension_points
+```
+(-a),(-v) ros2cli의 extension point 목록 출력
+```
+ros2 daemon
+```
+start daemon 시작
+status daemon 상태 보기
+stop daemon 정지
+```
+ros2 multicast
+```
+receive multicast 수신
+send multicast 전송
+```
+ros2 doctor,wtf(where's the file)
+```
+hello,(-r),(-rf),(-iw) ROS 설정 및 네트워크, 패키지 버전, rmw 미들웨어 등과 같은 잠재적 문제를 확인하는 도구
+```
+ros2 lifecycle
+```
+get 라이프사이클 정보 출력
+list 지정 노드의 사용 가능한 상태천이 목록 출력
+nodes 라이프사이클을 사용하는 노드 목록 출력
+set 라이프사이클 상태 전환 트리거
+```
+ros2 component
+```
+list 실행 중인 컨테이너와 컴포넌트 목록 출력
+load 지정 컨테이너 노드의 특정 컴포넌트 실행
+standalone 표준 컨테이너 노드로 특정 컴포넌트 실행
+types 사용 가능한 컴포넌트들의 목록 출력
+unload 지정 컴포넌트의 실행 중지
+```
+ros2 security
+```
+create_key 보안키 생성
+create_keystore 보안키 저장소 생성
+create_permission 보안 허가 파일 생성
+generate_artifacts 보안 정책 파일를 이용하여 보안키 및 보안 허가 파일 생성 
+generate_policy 보안 정책 파일(policy.xml) 생성
+list_keys 보안키 목록 출력
+```
+##### GUI 기반 RQT  
+RQT는 플러그인 형태로 다양한 도구와 인터페이스를 구현할 수 있는 GUI 프레임워크이며 다양한 목적의 GUI 툴을 모아둔 ROS의 종합 GUI 툴박스이다.  
+```
+1. rqt를 실행하여 원하는 플러그인 실행.
+2. $ ros2 run rqt_msg rqt_msg - rqt 관련 패키지들의 노드들을 하나씩 실행
+3. $ rqt_graph, rqt_topic - 단축 명령어 이용
+```
+1. Node Graph
+2. Topic Monitor
+3. Message Publisher
+4. Message Type Browser
+5. Service Caller
+6. Parameter(Dynamic) Reconfigure
+7. Plot
+8. Image View
+9. Console
 
-2. GUI 기반 RQT  
-그래픽 인터페이스 개발을 위한 Qt 기반 프레임워크 제공.  
-노드 연결 정보 rqt_graph / 속도,전압 등 시간에 따라 변하는 데이터 플로팅 rqt_plot 외 30가지    
-3. RViz  
+##### RViz  
 3차원 시각화툴. 레이저, 카메라 등 센서 데이터 시각화. 로봇 외형과 계획된 동작 표현  
-4. Gazebo  
+##### Gazebo  
 3차원 시뮬레이터. 물리 엔진을 탑재하여 로봇, 센서, 환경 모델 등 지원.  
 
 
