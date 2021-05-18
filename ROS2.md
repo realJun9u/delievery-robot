@@ -436,11 +436,103 @@ RQT는 플러그인 형태로 다양한 도구와 인터페이스를 구현할 �
 7. Plot
 8. Image View
 9. Console
-
 ##### RViz  
 3차원 시각화툴. 레이저, 카메라 등 센서 데이터 시각화. 로봇 외형과 계획된 동작 표현  
 ##### Gazebo  
 3차원 시뮬레이터. 물리 엔진을 탑재하여 로봇, 센서, 환경 모델 등 지원.  
+#### ROS2 표준 단위 : SI 유도 단위
+길이: m 질량: kg 시간: s 전류: A 각: rad 주파수: Hz 힘: N 일률: W 전압: V 온도: C 자기장: T  
+##### ROS2 축 방향 규칙  
+모든 좌표계는 오른손 법칙으로 표현한다.  
+로봇에서 사용하는 LiDAR 및 IMU, Torque 센서들도 제조사별로 서로 다른 좌표계를 사용할 수도 있으며 좌표 변환 API가 있더라도 기본 출력을 무엇인가를 미리 알아볼 필요가 있다. 예를 들어 IMU가 NED 타입(x north, y east, z down, relative to magnetic north) 이냐 ENU 타입(x-east, y-north, z-up, relative to magnetic north)이냐를 잘 살펴봐야하고 각 센서의 값을 사용하기에 전에 각 센서들의 좌표를 로봇 좌표에 맞추어 적절한 좌표 변환이 필요하다.  
+1. 기본 3축 : x forward, y left, z up  
+시각화 툴 RViz나 3차원 시뮬레이터 Gazebo에서 이러한 기본 3축의 표현에 있어서 RGB의 원색으로 표현하는데 순서대로 Red는 x 축, Green은 y축, Blue는 z축을 의미한다.  
+2. ENU 좌표(east north up) : 큰 맵을 사용하는 드론, 실외 자율 주행 로봇에서 사용  
+3. Suffix Frames : 기본 3축, ENU 좌표에서 벗어나는 경우 집미사를 이용하여 사용.접미사로 '_optical' '_ned' 가 있다.  
+3-1) `_optical` 접미사  
+컴퓨터 비전 분야의 경우, 카메라 좌표계로 많이 사용되는 z forward, x right, y down를 사용하게 되는데 이럴 경우에는 카메라 센서의 메시지에 `_optical` 접미사를 붙여 구분한다. 이때에는 z forward, x right, y down의 카메라 좌표계와 x forward, y left, z up의 로봇 좌표계 간의 TF(transform)가 필요하다.  
+3-2) `_ned` 접미사  
+실외에서 동작하는 시스템의 경우, 사용하는 센서 및 지도에 따라 ENU가 아닌 NED (north east down, ) 좌표계를 사용해야 할 때가 있다. 이때에는 `_ned` 접미사를 붙여 구분한다.  
+##### ROS2 회전 표현 규칙  
+1) 쿼터니언 (quaternion)  
+- 간결한 표현방식으로 가장 널리 사용됨 (x, y, z, w)  
+-특이점 없음 (No singularities)  
+2) 회전 매트릭스 (rotation matrix)  
+- 특이점 없음 (No singularities)  
+3) 고정축 roll, pitch, yaw (fixed axis roll, pitch, yaw about X, Y, Z axes respectively)  
+- 각속도에 사용  
+#### ROS2 파일 시스템
+ROS2의 응용프로그램은 패키지 단위로 개발,관리된다. 패키지는 노드를 하나 이상 포함하거나, 다른 노드를 실행하기 위한 launch와 같은 실행 및 설정 파일을 포함한다. 이러한 패키지는 메타패키지라는 공통된 목적의 패키지들을 모아둔 패키지 집합 단위로 관리되기도한다. Navigation2 메타패키지는 20여 개의 패키지로 구성. 각 패키지는 package.xml이라는 파일을 포함하고 있는데, XML파일은 패키지의 이름,저작자,라이선스,의존성 패키지 등의 정보를 담고있다. ROS2 빌드 시스템은 ament로 기본적으로 CMake를 이용하고 패키지 폴더에 CMakeLists.txt 파일에 빌드 설정을 기술한다.  
+패키지 설치는 바이너리 설치, 소스 코드 설치 두가지가 있다.  
+바이너리 설치 방법은 sudo apt install 해당 패키지 명만으로도 설치를 할 수 있으며 설치된 파일은 `/opt/ros/foxy` 에 저장되어 `ros2 run` 이나 `ros2 launch`로 해당 패키지내의 실행 가능한 노드를 실행시킬 수 있다.  
+소스 코드 설치 방법은 사용자 작업폴더 (예: '~/robot_ws/src')에 `git clone` 명령어를 통해 원격의 리포지토리를 복사 후 빌드하는 방법이다.  
+1. 기본 설치 폴더
+```
+/opt/ros/foxy
+▪ /bin 실행 가능한 바이너리 파일  
+▪ /cmake 빌드 설정 파일  
+▪ /include 헤더 파일  
+▪ /lib 라이브러리 파일  
+▪ /opt 기타 의존 패키지  
+▪ /share 패키지의 빌드, 환경 설정 파일  
+▪ local_setup.* 환경 설정 파일  
+▪ setup.* 환경 설정 파일  
+```
+2. 사용자 작업 폴더
+```
+/home/junq/robot_ws
+▪ /build 빌드 설정 파일용 폴더
+▪ /install msg, srv 헤더 파일과 사용자 패키지 라이브러리, 실행 파일용 폴더
+▪ /log 빌드 로깅 파일용 폴더
+▪ /src 사용자 패키지용 폴더
+```
+3. robot_ws/src 하위 파일
+```
+▪ /src C/C++ 코드용 폴더
+▪ /include C/C++ 헤더 파일용 폴더 (폴더 안에는 각 패키지 이름별 폴더로 패키지별 헤더를 구분함)
+▪ /param 파라미터 파일용 폴더
+▪ /launch roslaunch에 사용되는 launch 파일용 폴더
+▪ /패키지_이름_폴더 Python 코드용 폴더
+▪ /test 테스트 코드 및 테스트 데이터용 폴더
+▪ /msg 메시지 파일용 폴더
+▪ /srv 서비스 파일용 폴더
+▪ /action 액션 파일용 폴더
+▪ /doc 문서용 폴더
+▪ package.xml: 패키지 설정 파일 (REP-0140, REP-0149 참고)
+▪ CMakeLists.txt: C/C++ 빌드 설정 파일
+▪ setup.py: 파이썬 코드 환결 설정 파일
+▪ README: 사용자 문서, github 리포지토리의 메인에 표시된다.
+▪ CONTRIBUTING: 해당 패키지 개발에 공헌하는 방법을 기술하는 파일
+▪ LICENSE: 이 패키지의 라이선스를 기술하는 파일
+▪ CHANGELOG.rst: 이 패키지의 버전별 변경 사항 모음 파일 (REP-0132 참고)
+```
+#### ROS2 빌드 시스템, 빌드 툴
+빌드 시스템은 단일 패키지를 대상으로 하며, 빌드 툴은 시스템 전체를 대상으로 한다. 단일 패키지 개념과 시스템 전체를 나누게 된 것은 의존성이 가장 크다. ROS는 코드의 재사용성을 위하여 패키지(메타패키지)와 노드 단위로 구성되어 있고 각 패키지는 다른 패키지와 상호 호환성을 위하여 의존성을 갖게 된다.  
+빌드 시스템은 C++은 catkin과 ament_cmake를 사용하고 Python은 Python setuptools를 사용한다.  
+ROS에서는 수많은 패키지가 함께 빌드하여 실행시키는 구조이기 때문에 각 패키지별로 서로 다른 빌드 시스템을 호출하고 패키지들의 종속성은 매우 얽혀있는 경우에는 이 얽혀있는 의존성 실타래를 풀고 토폴로지 순서대로 빌드 해야만 한다. ROS 빌드 툴로는 rosbuild, catkin_make, catkin_make_isolated, catkin_tools, ament_tools 그리고 현재 ROS 2 버전에서 널리 사용되고 있는 colcon이 있다.  
+1. 패키지 생성
+```
+$ ros2 pkg create [패키지이름] --build-type [빌드 타입] --dependencies [의존하는패키지1] [의존하는패키지n]
+RCL로 C++을 사용하면 ament_cmake, Python을 사용하면 ament_python. GUI 프로그램을 작성한다면 rqt plugin을 사용해야하니 ament_cmake
+패키지를 작성할 때 ament 빌드 시스템에 꼭 필요한 CMakeLists.txt와 package.xml을 포함한 패키지 폴더를 생성한다.
+$ ros2 pkg create my_first_rclcpp_pkg --build-type ament_cmake --dependencies rclcpp std_msgs
+my_first_rclcpp_pkg
+├── CMakeLists.txt
+├── include
+│   └── my_first_rclcpp_pkg
+├── package.xml
+└── src
+```
+2. 빌드
+ROS2 특정 패키지 또는 전체 패키지를 빌드할 때는 colcon 빌드 툴을 사용한다. 소스코드가 있는 workspace로 이동하고 colcon build로 전체를 빌드하게 된다. 특정 패키지만 선택하여 빌드할 때는 --packages-select 옵션을 이용하고 symlink를 이용하려면 --symlink-install을 사용한다.  
+```
+$ cd ~/robot_ws && colcon build --symlink-install
+$ cd ~/robot_ws && colcon build --symlink-install --packages-select [패키지 이름]
+```
+3. 빌드 시스템에 필요한 부가 기능  
+1. vcstool 버전 컨트롤 시스템 툴  
+2. rosdep 의존선 관리 툴  
+3. bloom 바이너리 패키지 관리 툴
 
 
 
