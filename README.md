@@ -15,3 +15,5 @@
 라즈베리파이4 우분투 설치: https://blog.naver.com/roboholic84/221701573539  + SD카드 용량이 64GB이상이면 ext4로 포맷되어 FAT32로 포맷한 후 이미지를 설치해야한다.  
 라즈베리파이4 우분투 와이파이 설정: https://vanilet.tistory.com/16  
 우분투 서버 20.04 LTS GUI 설치: https://velog.io/@kyoung99u/Ubuntu-GUI-%EC%84%A4%EC%B9%98   
+ros noetic 설치: http://wiki.ros.org/noetic/Installation/Ubuntu  
+rplidar_ros 클론, 빌드: http://wiki.ros.org/rplidar  
