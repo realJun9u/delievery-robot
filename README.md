@@ -11,7 +11,8 @@
 아두이노 라즈베리파이 연동 - https://blog.naver.com/PostView.nhn?blogId=3demp&logNo=221399859161&parentCategoryNo=&categoryNo=52&viewDate=&isShowPopularPosts=true&from=search  
 
 
-### 시간별 진행 상황
+### 시간별 진행 상황  
+6.25 우분투 설치, ros noetic 설치, rplidar 연결 완료  
 라즈베리파이4 우분투 설치: https://blog.naver.com/roboholic84/221701573539  + SD카드 용량이 64GB이상이면 ext4로 포맷되어 FAT32로 포맷한 후 이미지를 설치해야한다.  
 라즈베리파이4 우분투 와이파이 설정: https://vanilet.tistory.com/16  
 우분투 서버 20.04 LTS GUI 설치: https://velog.io/@kyoung99u/Ubuntu-GUI-%EC%84%A4%EC%B9%98   
