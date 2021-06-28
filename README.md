@@ -30,16 +30,22 @@ rplidar_ros 클론, 빌드: http://wiki.ros.org/rplidar
 git clone https://github.com/tu-darmstadt-ros-pkg/hector_slam.git  
 ```
 ![image](https://user-images.githubusercontent.com/78460105/123499509-56742480-d672-11eb-9abe-ffae6076edfd.png)  
+
 6.26  
 hector slam 적용: https://doongdoongeee.tistory.com/104  
 ``` 
-git clone https://github.com/tu-darmstadt-ros-pkg/hector_slam.git  
-gedit catkin_ws/src/hector_slam/hector_mapping/launch/mapping_default.launch 파일 수정  
-gedit catkin_ws/src/hector_slam/hector_slam_launch/launch/tutorial.launch 파일 수정  
-catkin_make  
-source /devel/setup.bash  
-roslaunch rpldiar_ros rplidar.launch  
+git clone https://github.com/tu-darmstadt-ros-pkg/hector_slam.git
+gedit catkin_ws/src/hector_slam/hector_mapping/launch/mapping_default.launch 파일 수정
+gedit catkin_ws/src/hector_slam/hector_slam_launch/launch/tutorial.launch 파일 수정
+catkin_make
+source /devel/setup.bash
+roslaunch rpldiar_ros rplidar.launch
 roslaunch hector_slam_launch tutorial.launch
 ```
 ![image](https://user-images.githubusercontent.com/78460105/123499975-87098d80-d675-11eb-9006-c118b6d62d38.png)  
+
+6.28  
+Cartographer 적용: https://medium.com/robotics-weekends/2d-mapping-using-google-cartographer-and-rplidar-with-raspberry-pi-a94ce11e44c5  
+```
+git clone https://github.com/Andrew-rw/gbot_core.git
 
