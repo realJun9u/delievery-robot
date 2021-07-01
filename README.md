@@ -69,4 +69,13 @@ rosserial-arduino, rosserial-python 설치
 git clone https://github.com/WiringPi/WiringPi.git
 ./build
 아두이노에서 MPU9250_raw.ino, MPU9250_DMP6.ino 업로드하면 IMU값 출력
+
+sudo apt install ros-noetic-rosserial
+sudo apt install ros-noetic-rosserial-arduino
+sudo apt install ros-noetic-rosserial-python
+cd ~/Arduino/libraries -> ~/sketchbook/libraries에 하는 거 아님.
+rosrun rosserial_arduino make_libraries.py.
+
+/usr/bin/env: ‘python’: No such file or directory
+sudo apt install python-is-python3
 ```
