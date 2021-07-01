@@ -64,7 +64,9 @@ roslaunch gbot_core visualization.launch
 
 7.1  
 arduino IDE 설치, wiringPi 라이브러리 설치  
+rosserial-arduino, rosserial-python 설치
 ```
 git clone https://github.com/WiringPi/WiringPi.git
 ./build
+아두이노에서 MPU9250_raw.ino, MPU9250_DMP6.ino 업로드하면 IMU값 출력
 ```
