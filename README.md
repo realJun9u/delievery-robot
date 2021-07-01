@@ -27,7 +27,12 @@ sudo dpkg-reconfigure tzdata 에서 Asia - Seoul 선택
 ros noetic 설치: http://wiki.ros.org/noetic/Installation/Ubuntu  
 rplidar_ros 클론, 빌드: http://wiki.ros.org/rplidar  
 ```
-git clone https://github.com/tu-darmstadt-ros-pkg/hector_slam.git  
+git clone https://github.com/tu-darmstadt-ros-pkg/hector_slam.git
+ls -l /dev |grep ttyUSB
+sudo chmod 666 /dev/ttyUSB0
+roslaunch rplidar_ros view_rplidar.launch
+roslaunch rplidar_ros rplidar.launch
+rosrun rplidar_ros rplidarNodeClient
 ```
 ![image](https://user-images.githubusercontent.com/78460105/123499509-56742480-d672-11eb-9abe-ffae6076edfd.png)  
 
