@@ -62,3 +62,9 @@ roslaunch gbot_core visualization.launch
 ```
 ![image](https://user-images.githubusercontent.com/78460105/124073770-74c88e80-da7d-11eb-8fd8-9c4b37ee92fc.png)  
 
+7.1  
+arduino IDE 설치, wiringPi 라이브러리 설치  
+```
+git clone https://github.com/WiringPi/WiringPi.git
+./build
+```
