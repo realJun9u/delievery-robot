@@ -55,4 +55,10 @@ roslaunch hector_slam_launch tutorial.launch
 Cartographer 적용: https://medium.com/robotics-weekends/2d-mapping-using-google-cartographer-and-rplidar-with-raspberry-pi-a94ce11e44c5  
 ```
 git clone https://github.com/Andrew-rw/gbot_core.git
+catkin_make
+source ./devel/setup.bash
+roslaunch gbot_core gbot.launch
+roslaunch gbot_core visualization.launch
+```
+![image](https://user-images.githubusercontent.com/78460105/124073770-74c88e80-da7d-11eb-8fd8-9c4b37ee92fc.png)  
 
