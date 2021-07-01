@@ -30,7 +30,9 @@ rplidar_ros 클론, 빌드: http://wiki.ros.org/rplidar
 git clone https://github.com/tu-darmstadt-ros-pkg/hector_slam.git
 ls -l /dev |grep ttyUSB
 sudo chmod 666 /dev/ttyUSB0
+Rviz에서 보기
 roslaunch rplidar_ros view_rplidar.launch
+콘솔에서 보기
 roslaunch rplidar_ros rplidar.launch
 rosrun rplidar_ros rplidarNodeClient
 ```
