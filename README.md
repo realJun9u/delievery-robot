@@ -63,6 +63,8 @@ roslaunch gbot_core visualization.launch
 ![image](https://user-images.githubusercontent.com/78460105/124073770-74c88e80-da7d-11eb-8fd8-9c4b37ee92fc.png)  
 
 7.1  
+resserial: http://wiki.ros.org/rosserial  
+rosserial_arduino: http://wiki.ros.org/rosserial_arduino/Tutorials/Arduino%20IDE%20Setup  
 arduino IDE 설치, wiringPi 라이브러리 설치  
 rosserial-arduino, rosserial-python 설치
 ```
@@ -78,4 +80,8 @@ rosrun rosserial_arduino make_libraries.py.
 
 /usr/bin/env: ‘python’: No such file or directory
 sudo apt install python-is-python3
-```
+```  
+
+7.4  
+rosserial-arduino 튜토리얼 학습  
+Arduino IDE 에서 rosserial 사용하려면 #include <ros.h> #include <std_msgs / String.h> 필요  
