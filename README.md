@@ -16,6 +16,11 @@
 우분투 설치, ros noetic 설치, rplidar 연결 완료  
 라즈베리파이4 우분투 설치: https://blog.naver.com/roboholic84/221701573539  + SD카드 용량이 64GB이상이면 ext4로 포맷되어 FAT32로 포맷한 후 이미지를 설치해야한다.  
 우분투 서버 20.04 LTS GUI 설치: https://velog.io/@kyoung99u/Ubuntu-GUI-%EC%84%A4%EC%B9%98   
+```
+sudo apt-get install ubuntu-desktop
+sudo apt-get install indicator-appmenu-tools (hud service not connected 오류 해결)
+startx
+```
 라즈베리파이4 우분투 와이파이 설정: https://vanilet.tistory.com/16  
 와이파이 설정, 시간대 변경  
 ```
