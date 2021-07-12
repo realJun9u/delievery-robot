@@ -91,6 +91,9 @@ sudo apt install python-is-python3
 rosserial-arduino 튜토리얼 학습  
 Arduino IDE 에서 rosserial 사용하려면 #include <ros.h> #include <std_msgs / String.h> 필요  
 
+7.12  
+터틀봇3 사용 https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/
+
 
 ## 에러 대응  
 apt update, upgrade 오류  
