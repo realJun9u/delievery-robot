@@ -85,3 +85,14 @@ sudo apt install python-is-python3
 7.4  
 rosserial-arduino 튜토리얼 학습  
 Arduino IDE 에서 rosserial 사용하려면 #include <ros.h> #include <std_msgs / String.h> 필요  
+
+
+## 에러 대응  
+apt update, upgrade 오류  
+```
+- sudo rm /var/lib/apt/lists/lock
+- sudo rm /var/cache/apt/archives/lock
+- sudo rm /var/lib/dpkg/lock*
+
+sudo dpkg --configure -a  를 하시고 sudo apt update
+```
