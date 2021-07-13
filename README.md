@@ -80,6 +80,7 @@ git clone https://github.com/WiringPi/WiringPi.git
 sudo apt install ros-noetic-rosserial
 sudo apt install ros-noetic-rosserial-arduino
 sudo apt install ros-noetic-rosserial-python
+rm -rf ros_lib
 cd ~/Arduino/libraries -> ~/sketchbook/libraries에 하는 거 아님.
 rosrun rosserial_arduino make_libraries.py.
 
