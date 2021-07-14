@@ -95,6 +95,8 @@ Arduino IDE 에서 rosserial 사용하려면 #include <ros.h> #include <std_msgs
 7.12  
 터틀봇3 사용 https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/
 
+7.14
+rosserial로 topic publish하여 로봇 구동. 방향키 입력으로 할 수 있게 해야함.
 
 ## 에러 대응  
 apt update, upgrade 오류  
