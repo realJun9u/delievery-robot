@@ -96,7 +96,12 @@ Arduino IDE 에서 rosserial 사용하려면 #include <ros.h> #include <std_msgs
 터틀봇3 사용 https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/
 
 7.14
-rosserial로 topic publish하여 로봇 구동. 방향키 입력으로 할 수 있게 해야함.
+rosserial로 topic publish하여 로봇 구동. 방향키 입력으로 할 수 있게 해야함.  
+아두이노 방향 LOW 일떄 안돌아감.  
+
+7.15  
+teleop_twist_keyboard 패키지가 UIOJKLM<>로 geometry_msgs/Twist 메시지 퍼블리시 한다.
+
 
 ## 에러 대응  
 apt update, upgrade 오류  
