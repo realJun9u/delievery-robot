@@ -2,15 +2,6 @@
 
 ## 사용 기술
 
-### 참고
-휠 - https://m.blog.naver.com/PostView.nhn?blogId=hdh7485&logNo=20118847355&proxyReferer=https:%2F%2Fwww.google.com%2F => 옴니휠 4개 쓰자  
-모터 - https://www.mfgkr.com/archives/5108 => DC 모터 쓰자  
-모터 드라이버 역할? - http://www.makeshare.org/bbs/board.php?bo_table=Parts&wr_id=26  
-라즈베리파이 모터제어 - https://digital-play.tistory.com/24?category=940925  
-라즈베리파이 모터제어 단점 - http://www.makeshare.org/bbs/board.php?bo_table=raspberrypi&wr_id=69 =>  
-아두이노 라즈베리파이 연동 - https://blog.naver.com/PostView.nhn?blogId=3demp&logNo=221399859161&parentCategoryNo=&categoryNo=52&viewDate=&isShowPopularPosts=true&from=search  
-
-
 ### 시간별 진행 상황  
 6.25  
 우분투 설치, ros noetic 설치, rplidar 연결 완료  
@@ -102,6 +93,16 @@ rosserial로 topic publish하여 로봇 구동. 방향키 입력으로 할 수 �
 7.15  
 teleop_twist_keyboard 패키지가 UIOJKLM<>로 geometry_msgs/Twist 메시지 퍼블리시 한다.
 
+7.16  
+코드상은 문제가 없어 보이지만 출력이 제대로 발생하지 않는 경우가 있다.  
+배터리의 성능(전류)에 따라 모터의 성능이 차이가 많이나고 11.1V(3.7x3), 2200mAh 배터리는 구동이 안되었다.  
+모터 드라이버의 발열이 심함. 배터리에서 드라이버로 들어가는 도선이 전류를 감당하지 못하는 것 같음.
+
+7.17  
+모터의 안정적인 구동을 위해 PID 제어가 필요하다. PID 라이브러리: https://playground.arduino.cc/Code/PIDLibrary/  
+P, I, K 파라미터에 따라 안정도가 달라짐 - 자동제어에서 배움  
+엔코더 값을 받으려면 회전수, 방향을 알아야 해서 각 두개의 인터럽트 핀이 필요. Encoder 라이브러리: https://www.arduino.cc/reference/en/libraries/encoder/
+엔코더 라이브러리에서 둘 중 하나만 인터럽트여도 괜찮게 동작하게 한다고 함.
 
 ## 에러 대응  
 apt update, upgrade 오류  
