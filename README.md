@@ -130,6 +130,19 @@ MsTimer2 라이브러리 사용하려면 Mega 2560에서 PWM 9, 10 핀 사용 �
 적재, 하차부분은 컨베이어 벨트와 서보 모터를 이용한 푸시 방식으로 최대 3개 적재되게 함.  
 이번 주는 대체로 설계, 자제 탐구에 시간을 많이 썼고, 모터 이상으로 odometry를 SLAM 파트에 적용해 볼 수 없었다.  
 
+8.21
+오래동안 자재가 오지 않아 진행이 어려웠다.  
+ttyUSB 포트 고정을 위해 심볼릭 링크 생성
+```bash
+dmesg | grep ttyUSB
+lsusb
+udevadm info -a /dev/ttyUSBx | grep serial
+sudo vim /etc/udev/rule.d/99-sub-serial.rules
+```
+```vim
+SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", SYMLINK+="rplidar"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", SYMLINK+="arduino"
+```
 ## 에러 대응  
 apt update, upgrade 오류  
 ```
