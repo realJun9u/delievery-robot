@@ -132,7 +132,7 @@ MsTimer2 라이브러리 사용하려면 Mega 2560에서 PWM 9, 10 핀 사용 �
 
 8.21
 오래동안 자재가 오지 않아 진행이 어려웠다.  
-ttyUSB 포트 고정을 위해 심볼릭 링크 생성
+ttyUSB 포트 고정을 위해 심볼릭 링크 생성  
 ```bash
 dmesg | grep ttyUSB
 lsusb
@@ -145,7 +145,8 @@ SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", SYMLINK+="a
 ```
 ```
 sudo udevadm trigger
-```
+```  
+이제까지 모터 속도차이로 생각했던 문제들이 단순 바퀴 방향 문제였다.. 차체 옆면 보강 후부터 이런 현상이 생겼는데 바퀴를 다시 조립하는 과정에서 생긴 문제인가 보다..
 ## 에러 대응  
 apt update, upgrade 오류  
 ```
