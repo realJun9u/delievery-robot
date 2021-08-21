@@ -143,6 +143,9 @@ sudo vim /etc/udev/rule.d/99-sub-serial.rules
 SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", SYMLINK+="rplidar"
 SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", SYMLINK+="arduino"
 ```
+```
+sudo udevadm trigger
+```
 ## 에러 대응  
 apt update, upgrade 오류  
 ```
