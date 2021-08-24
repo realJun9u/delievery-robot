@@ -146,7 +146,27 @@ SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", SYMLINK+="a
 ```
 sudo udevadm trigger
 ```  
-이제까지 모터 속도차이로 생각했던 문제들이 단순 바퀴 방향 문제였다.. 차체 옆면 보강 후부터 이런 현상이 생겼는데 바퀴를 다시 조립하는 과정에서 생긴 문제인가 보다..
+이제까지 모터 속도차이로 생각했던 문제들이 단순 바퀴 방향 문제였다.. 차체 옆면 보강 후부터 이런 현상이 생겼는데 바퀴를 다시 조립하는 과정에서 생긴 문제인가 보다..  
+
+8.24  
+로봇 오픈소스인 linorobot을 참고하였다. https://github.com/linorobot/linorobot  
+Ubuntu 16.04 까지밖에 지원하지 않아서 OS를 새로설치 하게 되었다.  
+기존 Ubuntu 20.04에 ros noetic, cartographer, rplidar가 설치되어 있었고 아래는 bashrc 설정이다.  
+```bash
+alias eb='vim ~/.bashrc'
+alias sb='source ~/.bashrc'
+alias cw='cd ~/catkin_ws'
+alias cs='cd ~/catkin_ws/src'
+alias cm='cd ~/catkin_ws && catkin_make'
+alias rs='rosrun rosserial_python serial_node.py _port:=/dev/ttyUSB1'
+alias rb='rosrun teleop_twist_keyboard teleop_twist_keyboard.py'
+source /opt/ros/noetic/setup.bash
+source ~/catkin_ws/devel/setup.bash
+source ~/catkin_ws/install_isolated/setup.bash
+source ~/gbot_catkin_ws/devel/setup.bash
+export ROS_MASTER_URI=http://localhost:11311
+export ROS_HOSTNAME=localhost
+```
 ## 에러 대응  
 apt update, upgrade 오류  
 ```
