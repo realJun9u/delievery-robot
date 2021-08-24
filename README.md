@@ -149,24 +149,50 @@ sudo udevadm trigger
 이제까지 모터 속도차이로 생각했던 문제들이 단순 바퀴 방향 문제였다.. 차체 옆면 보강 후부터 이런 현상이 생겼는데 바퀴를 다시 조립하는 과정에서 생긴 문제인가 보다..  
 
 8.24  
-로봇 오픈소스인 linorobot을 참고하였다. https://github.com/linorobot/linorobot  
-Ubuntu 16.04 까지밖에 지원하지 않아서 OS를 새로설치 하게 되었다.  
-기존 Ubuntu 20.04에 ros noetic, cartographer, rplidar가 설치되어 있었고 아래는 bashrc 설정이다.  
+로봇 오픈소스인 linorobot을 참고하였다. https://github.com/linorobot/linorobot/wiki/1.-Getting-Started  
 ```bash
-alias eb='vim ~/.bashrc'
-alias sb='source ~/.bashrc'
-alias cw='cd ~/catkin_ws'
-alias cs='cd ~/catkin_ws/src'
-alias cm='cd ~/catkin_ws && catkin_make'
-alias rs='rosrun rosserial_python serial_node.py _port:=/dev/ttyUSB1'
-alias rb='rosrun teleop_twist_keyboard teleop_twist_keyboard.py'
-source /opt/ros/noetic/setup.bash
-source ~/catkin_ws/devel/setup.bash
-source ~/catkin_ws/install_isolated/setup.bash
-source ~/gbot_catkin_ws/devel/setup.bash
-export ROS_MASTER_URI=http://localhost:11311
-export ROS_HOSTNAME=localhost
+git clone https://github.com/linorobot/lino_install
+cd lino_install
+sudo apt-get install dphys-swapfile
+./install mecanum rplidar
+
 ```
+install 파일을 수정해야 noetic에서 사용가능.  
+```vim
+...
+python-dev 지우고 python-dev-is-python3
+python-gudev 지우고 gir1.2-gudev-1.0 \
+python-is-python3
+
+sudo easy_install pip 지우고 sudo apt install python3-pip
+sudo python2.7 -m pip install -U platformio 지우고 sudo pip3 install -U platformio
+...
+rplidar 설치 부분을 모두 지워야한다.
+```
+rplidar는 ros-noetic-rplidar가 apt로 설치 불가하여 깃 클론으로 설치했다. https://github.com/robopeak/rplidar_ros  
+아래는 노트북 ubuntu에 설치한다.  
+```vim
+cs
+git clone https://github.com/linorobot/lino_pid.git
+git clone https://github.com/linorobot/lino_msgs.git
+git clone https://github.com/linorobot/lino_visualize.git
+sudo apt-get install ros-$(rosversion -d)-teleop-twist-keyboard
+cm
+```  
+다음에는 teensy를 연결하여 설정을 마무리해야한다.  
+Robot's computer  
+export ROS_MASTER_URI=http://robot-ip:11311  
+export ROS_HOSTNAME=robot-ip  
+
+Development computer  
+export ROS_MASTER_URI=http://robot-up:11311  
+export ROS_HOSTNAME=devcom-ip  
+
+노트북 환경인 wsl2의 외부 접속이 필요할 수 있을 것 같아서 9929번으로 뚫어놨다.    
+https://blog.dalso.org/linux/wsl2/11430  
+https://blog.dalso.org/it/11432  
+![image](https://user-images.githubusercontent.com/78460105/130570487-23fd00ce-4e96-4bc8-adae-ac05e3db03fa.png)
+
 ## 에러 대응  
 apt update, upgrade 오류  
 ```
