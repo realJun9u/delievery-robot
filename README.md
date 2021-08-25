@@ -151,7 +151,9 @@ sudo udevadm trigger
 8.24  
 Ubuntu 20.04, ROS noetic - Ubuntu 18.04, ROS melodic으로 다운그레이드 하였다.  
 linorobot을 기존 환경에서도 설치해봤는데, 호환성 측면에서 더 좋은것 같았다.
-로봇 오픈소스인 linorobot을 참고하였다. https://github.com/linorobot/linorobot/wiki/1.-Getting-Started  
+로봇 오픈소스인 linorobot을 참고하였다.
+https://github.com/linorobot/linorobot/wiki/1.-Getting-Started  
+https://github.com/linorobot/linorobot/issues/31 - melodic 설치 가이드  
 ```bash
 git clone https://github.com/linorobot/lino_install
 cd lino_install
