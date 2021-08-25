@@ -193,6 +193,24 @@ https://blog.dalso.org/linux/wsl2/11430
 https://blog.dalso.org/it/11432  
 ![image](https://user-images.githubusercontent.com/78460105/130570487-23fd00ce-4e96-4bc8-adae-ac05e3db03fa.png)
 
+8.25  
+noetic에서는 호환 문제가 좀 있어서 melodic으로 버전을 바꾸기로 했다.  
+아래는 bashrc 설정을 저장하기 위함이다.
+```vim
+alias eb='vim ~/.bashrc'
+alias sb='source ~/.bashrc'
+alias cw='cd ~/catkin_ws'
+alias cs='cd ~/catkin_ws/src'
+alias cm='cd ~/catkin_ws && catkin_make'
+alias rs='rosrun rosserial_python serial_node.py _port:=/dev/ttyUSB1'
+alias rb='rosrun teleop_twist_keyboard teleop_twist_keyboard.py'
+
+source /opt/ros/noetic/setup.bash
+source ~/catkin_ws/devel/setup.bash
+
+export ROS_MASTER_URI=http://localhost:11311
+export ROS_HOSTNAME=localhost
+```
 ## 에러 대응  
 apt update, upgrade 오류  
 ```
