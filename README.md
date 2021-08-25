@@ -197,7 +197,6 @@ export ROS_HOSTNAME=devcom-ip
 노트북 환경인 wsl2의 외부 접속이 필요할 수 있을 것 같아서 9929번으로 뚫어놨다.(근데 필요없는 것 같다)    
 https://blog.dalso.org/linux/wsl2/11430  
 https://blog.dalso.org/it/11432  
-![image](https://user-images.githubusercontent.com/78460105/130570487-23fd00ce-4e96-4bc8-adae-ac05e3db03fa.png)
 
 8.25  
 melodic에서 linorobot 설치를 하고 udev 설정을 하였다.
